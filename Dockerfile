@@ -1,13 +1,12 @@
-FROM ubuntu:bionic-20190612
-LABEL maintainer="sameer@damagehead.com"
+FROM ubuntu:jammy-20230816
+LABEL maintainer="henrybear327@gmail.com"
 
-ENV SQUID_VERSION=3.5.27 \
-    SQUID_CACHE_DIR=/var/spool/squid \
+ENV SQUID_CACHE_DIR=/var/spool/squid \
     SQUID_LOG_DIR=/var/log/squid \
     SQUID_USER=proxy
 
 RUN apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y squid=${SQUID_VERSION}* \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y squid \
  && rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /sbin/entrypoint.sh
